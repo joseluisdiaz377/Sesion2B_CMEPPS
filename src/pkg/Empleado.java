@@ -6,7 +6,7 @@ public class Empleado {
 		Vendedor, Encargado
 	};
 
-	public float calculoNominaBruta(TipoEmpleado tipo, float ventasMes, float horasExtra) {
+	public static float calculoNominaBruta(TipoEmpleado tipo, float ventasMes, float horasExtra) {
 		int salario = 0;
 		if (tipo == TipoEmpleado.Vendedor) {
 			salario = 2000;
