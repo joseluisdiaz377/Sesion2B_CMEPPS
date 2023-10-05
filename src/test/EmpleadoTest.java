@@ -27,7 +27,7 @@ class EmpleadoTest {
 
 	@AfterEach
 	void tearDown() throws Exception {
-		
+
 	}
 
 	@Test
@@ -35,75 +35,106 @@ class EmpleadoTest {
 		float obtenido = Empleado.calculoNominaBruta(TipoEmpleado.Encargado, 0, 0);
 		float deseado = 2500;
 		assertEquals(deseado, obtenido);
-		
-		
+
 	}
-	
+
 	@Test
 	void testCalculoNominaBrutaVendedor() {
 		float obtenido = Empleado.calculoNominaBruta(TipoEmpleado.Vendedor, 0, 0);
 		float deseado = 2000;
 		assertEquals(deseado, obtenido);
 	}
-	
+
 	@Test
 	void testCalculoNominaBrutaOtro() {
-//		float obtenido = Empleado.calculoNominaBruta(null, 0, 0);
-//		float deseado = 2000;
-//		assertEquals(deseado, obtenido);
-		fail("Not yet implemented");
+		float obtenido = Empleado.calculoNominaBruta(TipoEmpleado.Otro, 0, 0);
+		float deseado = -1;
+		assertEquals(deseado, obtenido);
 	}
-	
+
 	@Test
 	void testCalculoNominaBrutaVentasMesNegativa() {
-		fail("Not yet implemented");
+		float deseado = -1;
+		float obtenido = Empleado.calculoNominaBruta(TipoEmpleado.Vendedor, -20, 0);
+		assertEquals(deseado, obtenido);
+
 	}
-	
+
 	@Test
 	void testCalculoNominaBrutaVentasMesMenor1000() {
-		fail("Not yet implemented");
+		float deseado = 2000;
+		float obtenido = Empleado.calculoNominaBruta(TipoEmpleado.Vendedor, 90, 0);
+		assertEquals(deseado, obtenido);
 	}
-	
+
 	@Test
 	void testCalculoNominaBrutaVentasMesEntre1000y1500() {
-		fail("Not yet implemented");
+		float deseado = 2100;
+		float obtenido = Empleado.calculoNominaBruta(TipoEmpleado.Vendedor, 1112, 0);
+		assertEquals(deseado, obtenido);
 	}
-	
+
 	@Test
 	void testCalculoNominaBrutaVentasMesMayor1500() {
-		fail("Not yet implemented");
+		float deseado = 2200;
+		float obtenido = Empleado.calculoNominaBruta(TipoEmpleado.Vendedor, 1501, 0);
+		assertEquals(deseado, obtenido);
 	}
-	
+
 	@Test
 	void testCalculoNominaBrutaHorasExtrasPositiva() {
-		fail("Not yet implemented");
+		float ventasMes = 0;
+		float horasExtras = 3;
+
+		float deseado = 2000 + 30 * horasExtras;
+		float obtenido = Empleado.calculoNominaBruta(TipoEmpleado.Vendedor, ventasMes, horasExtras);
+		assertEquals(deseado, obtenido);
 	}
-	
+
 	@Test
 	void testCalculoNominaBrutaHorasExtrasNegativa() {
-		fail("Not yet implemented");
+		float ventasMes = 0;
+		float horasExtras = -3;
+
+		float deseado = -1;
+		float obtenido = Empleado.calculoNominaBruta(TipoEmpleado.Vendedor, ventasMes, horasExtras);
+		assertEquals(deseado, obtenido);
 	}
-	
-	
 
 	@Test
 	void testCalculoNominaNetaNegativa() {
-		fail("Not yet implemented");
+		float nominaBruta = -240;
+		float deseado = -1;
+
+		float obtenido = Empleado.calculoNomina(nominaBruta);
+		assertEquals(deseado, obtenido);
+
 	}
-	
+
 	@Test
 	void testCalculoNominaNetaMenor2100() {
-		fail("Not yet implemented");
+		float nominaBruta = 2099;
+		float deseado = nominaBruta;
+
+		float obtenido = Empleado.calculoNomina(nominaBruta);
+		assertEquals(deseado, obtenido);
 	}
-	
+
 	@Test
 	void testCalculoNominaNetaEntre2100y2500() {
-		fail("Not yet implemented");
+		float nominaBruta = 2400;
+		float deseado = nominaBruta * (1 - 0.15f);
+
+		float obtenido = Empleado.calculoNomina(nominaBruta);
+		assertEquals(deseado, obtenido);
 	}
-	
+
 	@Test
 	void testCalculoNominaNetaMayor2500() {
-		fail("Not yet implemented");
-	}
+		float nominaBruta = 2550;
+		float deseado = nominaBruta * (1 - 0.18f);
+
+		float obtenido = Empleado.calculoNomina(nominaBruta);
+		assertEquals(deseado, obtenido);	}
 
 }
